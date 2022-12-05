@@ -1,3 +1,6 @@
+// Cooper Ramey
+// CIS 1202
+// 12/4/2022
 #include <iostream>
 
 using namespace std;
@@ -34,10 +37,16 @@ char character(char start, int offset);
 
 char character(char start, int offset)
 {
-	if (isalpha(start) == 0)
+	if (isalpha(start) == 0) // isalpha returns 0 if false, 1024 if true (i don't know why)
 	{
 		throw invalidCharacterExcpeption("Invalid character, try again!");
 	}
+	start = char(start + offset);
+	if (isalpha(start) == 0)
+	{
+		throw invalidRangeException("Invalid offset, try again!");
+	}
+	return start;
 }
 
 int main()
@@ -62,7 +71,7 @@ int main()
 		}
 		catch (invalidRangeException e)
 		{
-
+			cout << e.getValue() << endl;
 		}
 	}
 }
